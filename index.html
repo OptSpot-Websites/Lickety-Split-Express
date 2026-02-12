@@ -244,5 +244,44 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
+    <style>
+      .water-splash-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .water-drop {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(66, 182, 240, 0.35), rgba(19, 164, 236, 0.15));
+        animation: bubble-float 4s ease-in-out infinite;
+      }
+      .water-drop.d1 { width: 80px; height: 80px; top: 15%; left: 5%; animation-delay: 0s; animation-duration: 5s; }
+      .water-drop.d2 { width: 50px; height: 50px; top: 35%; right: 8%; animation-delay: 1.2s; animation-duration: 4s; }
+      .water-drop.d3 { width: 120px; height: 120px; bottom: 20%; left: 3%; animation-delay: 0.5s; animation-duration: 6s; }
+      .water-drop.d4 { width: 40px; height: 40px; top: 60%; right: 4%; animation-delay: 2s; animation-duration: 3.5s; }
+      .water-drop.d5 { width: 65px; height: 65px; top: 80%; left: 10%; animation-delay: 1.5s; animation-duration: 4.5s; }
+      .water-drop.d6 { width: 35px; height: 35px; top: 10%; right: 15%; animation-delay: 0.8s; animation-duration: 5.5s; }
+      .water-drop.d7 { width: 90px; height: 90px; top: 45%; left: 2%; animation-delay: 2.5s; animation-duration: 4.2s; }
+      .water-drop.d8 { width: 55px; height: 55px; bottom: 10%; right: 6%; animation-delay: 1s; animation-duration: 5.2s; }
+      @media (max-width: 768px) {
+        .water-drop { opacity: 0.4; transform: scale(0.6); }
+      }
+    </style>
+    <div class="water-splash-container" aria-hidden="true">
+      <div class="water-drop d1"></div>
+      <div class="water-drop d2"></div>
+      <div class="water-drop d3"></div>
+      <div class="water-drop d4"></div>
+      <div class="water-drop d5"></div>
+      <div class="water-drop d6"></div>
+      <div class="water-drop d7"></div>
+      <div class="water-drop d8"></div>
+    </div>
   </body>
 </html>
