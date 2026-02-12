@@ -244,5 +244,122 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
+    <style>
+      .droplet-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+      }
+      .droplet {
+        position: absolute;
+        width: 8px;
+        height: 10px;
+        background: radial-gradient(ellipse at 30% 20%, rgba(135, 206, 250, 0.7), rgba(30, 144, 255, 0.4));
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        opacity: 0;
+        animation: drop-fall 0.8s ease-in forwards;
+      }
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        border: 1.5px solid rgba(100, 180, 255, 0.5);
+        width: 4px;
+        height: 4px;
+        opacity: 0;
+        animation: ripple-out 0.7s ease-out forwards;
+      }
+      .micro-splash {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: rgba(135, 206, 250, 0.6);
+        border-radius: 50%;
+        opacity: 0;
+        animation: splash-up 0.5s ease-out forwards;
+      }
+      @keyframes drop-fall {
+        0% { opacity: 0; transform: translateY(-30px) scale(0.5); }
+        30% { opacity: 0.8; }
+        90% { opacity: 0.6; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(2px) scale(1.3, 0.4); }
+      }
+      @keyframes ripple-out {
+        0% { opacity: 0.6; transform: scale(0); }
+        100% { opacity: 0; transform: scale(8); }
+      }
+      @keyframes splash-up {
+        0% { opacity: 0.7; transform: translate(0, 0) scale(1); }
+        100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3); }
+      }
+    </style>
+    <div class="droplet-canvas" id="dropletCanvas" aria-hidden="true"></div>
+    <script>
+      (function() {
+        const canvas = document.getElementById('dropletCanvas');
+        let lastScroll = 0;
+        let scrollTimeout;
+        let dropCount = 0;
+        const maxDrops = 4;
+        const throttleMs = 120;
+        let lastDropTime = 0;
+
+        function createDrop() {
+          const now = Date.now();
+          if (now - lastDropTime < throttleMs || dropCount >= maxDrops) return;
+          lastDropTime = now;
+          dropCount++;
+
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight * 0.8 + window.innerHeight * 0.1;
+
+          const drop = document.createElement('div');
+          drop.className = 'droplet';
+          drop.style.left = x + 'px';
+          drop.style.top = (y - 30) + 'px';
+          canvas.appendChild(drop);
+
+          setTimeout(function() {
+            drop.remove();
+
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (x - 2) + 'px';
+            ripple.style.top = (y - 2) + 'px';
+            canvas.appendChild(ripple);
+
+            for (var i = 0; i < 3; i++) {
+              const sp = document.createElement('div');
+              sp.className = 'micro-splash';
+              sp.style.left = x + 'px';
+              sp.style.top = y + 'px';
+              const angle = Math.random() * Math.PI * 2;
+              const dist = 8 + Math.random() * 12;
+              sp.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
+              sp.style.setProperty('--sy', (Math.sin(angle) * dist - 10) + 'px');
+              canvas.appendChild(sp);
+              setTimeout(function() { sp.remove(); }, 500);
+            }
+
+            setTimeout(function() { ripple.remove(); dropCount--; }, 700);
+          }, 700);
+        }
+
+        window.addEventListener('scroll', function() {
+          const diff = Math.abs(window.scrollY - lastScroll);
+          if (diff > 30) {
+            createDrop();
+            if (diff > 80) {
+              setTimeout(createDrop, 60);
+            }
+            lastScroll = window.scrollY;
+          }
+        }, { passive: true });
+      })();
+    </script>
   </body>
 </html>
