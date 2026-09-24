@@ -142,13 +142,17 @@ Facebook domain verification is in the `<head>` of `index.html`.
 | Careers | `2lkvag7f` | bundle |
 | Fundraising | `wbe2phvl` | bundle |
 
-**Known domain mismatch:** the live domain is `licketysplitcarwash.com`, but
-the canonical tag, Open Graph/Twitter tags and schema data (in `index.html`
-and in the bundle) all say `licketysplitexpress.com`. The contact email also
-differs: `info@licketysplitexpress.com` in the schema vs
-`info@licketysplitcarwash.com` on the fundraising button. The `og-image.jpg`
-and `logo.png` those tags point to do not exist in this repo. Fix these only
-after the account manager confirms the correct email.
+**Domain:** the only domain is `licketysplitcarwash.com`. The site used to
+point at `licketysplitexpress.com`, which is **not the client's**. That was
+fixed 2026-09-24 in `index.html` and the bundle. Never use it again. The
+membership portal `licketysplitexpress.mywashaccount.com` is a different thing
+and is correct.
+
+Share image: `/assets/hero_desert_convertible-CUDfpGU2.png`. Logo in schema:
+`/assets/Lickety_Split_Express_Carwash_Logo_1769543439570-uebVpSk-.png`.
+
+**Known issue:** sub-pages end up with two canonical tags — the static one in
+`index.html` (always `/`) and the one React adds per page. Not yet fixed.
 
 ## House rules
 
