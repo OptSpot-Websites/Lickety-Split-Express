@@ -26,6 +26,15 @@ edit here -> git push origin main -> Cloudflare Pages -> https://licketysplitcar
 - `main` is the production branch. **A push goes live.**
 - Cloudflare runs **no build step**. It serves the files as-is.
 - Push a non-`main` branch to get a Cloudflare preview URL for review.
+- Cloudflare project: `lickety-split-express`. Domains: `licketysplitcarwash.com`,
+  `www.licketysplitcarwash.com`, `lickety-split-express.pages.dev`.
+- **Build output directory must be `/`** (build command blank). It was set to
+  `public`, a folder this repo never had, so every deploy failed silently from
+  about Feb to Sept 2026 and the live site sat on an old version. Fixed
+  2026-09-24. If deploys show "No deployment available", check this setting
+  first.
+- After a push, confirm the deploy shows a green check in Cloudflare →
+  Deployments. A failed deploy leaves the old version live with no warning.
 
 ## Structure
 
