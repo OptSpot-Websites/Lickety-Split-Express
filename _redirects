@@ -1,3 +1,9 @@
-# Keep internal notes files off the public site
-/CLAUDE.md  /  302
-/replit.md  /  302
+# Keep internal notes and Replit leftovers off the public site
+/CLAUDE.md          /  302
+/replit.md          /  302
+/.replit            /  302
+/server.js          /  302
+/serve.json         /  302
+/package.json       /  302
+/package-lock.json  /  302
+/attached_assets/*  /  302
