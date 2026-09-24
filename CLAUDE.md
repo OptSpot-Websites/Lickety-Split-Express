@@ -36,6 +36,7 @@ assets/index-*.css    compiled Tailwind CSS
 assets/*.png|jpg      images used by the bundle (hashed filenames)
 free_google.html      Google Ads free-wash landing page (noindex) — plain HTML
 thankyouads.html      ads conversion thank-you page (noindex) — plain HTML
+_redirects            Cloudflare redirects — hides CLAUDE.md and replit.md from the public site
 attached_assets/      reference screenshots from Replit — not used by the site
 server.js package.json package-lock.json serve.json .replit replit.md
                       Replit leftovers — Cloudflare does not use them
@@ -139,6 +140,10 @@ Facebook domain verification is in the `<head>` of `index.html`.
   URLs are indexed and run in paid ads.
 - **Do not change pricing, hours, addresses, or offers** without confirming
   with the account manager. This is customer-facing client copy.
+- **Keep internal notes off the public site.** Cloudflare serves every file in
+  this repo. `_redirects` sends `/CLAUDE.md` and `/replit.md` to the homepage.
+  Add a line there for any new notes file. Never add a `/* /index.html 200`
+  catch-all — Cloudflare already handles the React routes.
 - There is no `sitemap.xml` or `robots.txt`. Consider adding them — keep them
   in sync with the page list above.
 
