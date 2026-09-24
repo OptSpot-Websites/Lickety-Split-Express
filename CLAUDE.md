@@ -1,4 +1,4 @@
-# Lickety Split Express Car Wash — licketysplitexpress.com
+# Lickety Split Express Car Wash — licketysplitcarwash.com
 
 Client site for Lickety Split Express Car Wash (Fernley, NV). Operated by OptSpot.
 
@@ -20,7 +20,7 @@ This is the same shape as Mr. Shine. Treat it with the same care.
 ## Deploy chain
 
 ```
-edit here -> git push origin main -> Cloudflare Pages -> https://licketysplitexpress.com
+edit here -> git push origin main -> Cloudflare Pages -> https://licketysplitcarwash.com
 ```
 
 - `main` is the production branch. **A push goes live.**
@@ -132,6 +132,14 @@ Facebook domain verification is in the `<head>` of `index.html`.
 | Contact | `bdxqx43a` | bundle |
 | Careers | `2lkvag7f` | bundle |
 | Fundraising | `wbe2phvl` | bundle |
+
+**Known domain mismatch:** the live domain is `licketysplitcarwash.com`, but
+the canonical tag, Open Graph/Twitter tags and schema data (in `index.html`
+and in the bundle) all say `licketysplitexpress.com`. The contact email also
+differs: `info@licketysplitexpress.com` in the schema vs
+`info@licketysplitcarwash.com` on the fundraising button. The `og-image.jpg`
+and `logo.png` those tags point to do not exist in this repo. Fix these only
+after the account manager confirms the correct email.
 
 ## House rules
 
