@@ -151,10 +151,16 @@ and is correct.
 Share image: `/assets/hero_desert_convertible-CUDfpGU2.png`. Logo in schema:
 `/assets/Lickety_Split_Express_Carwash_Logo_1769543439570-uebVpSk-.png`.
 
-**Known issue:** sub-pages end up with two canonical tags — the static one in
-`index.html` (always `/`) and the one React adds per page. Not yet fixed.
+**Canonical tags:** React adds one canonical tag per page. Do not add a
+static `<link rel="canonical">` to `index.html` — it would duplicate it on
+every page.
 
 ## House rules
+
+- **No email addresses on the public site.** The client's email is private.
+  Do not put it (or any `info@` address) in pages, schema data or `mailto:`
+  links. Send people to the Paperform forms instead (e.g. `/contact`,
+  `/fundraising`). Do not write the real address in this repo.
 
 - **Do not add `404.html`** (see above).
 - **Do not rename or move HTML files or routes** without a redirect. These
